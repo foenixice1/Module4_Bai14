@@ -1,0 +1,54 @@
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Student</title>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+<div class="container">
+    <form action="/findByName" method="get">
+        <input type="text" class="form-control" placeholder="search" name="findName">
+        <input type="text" hidden name="action" value="findName">
+        <button type="submit" class="btn btn-success">Find</button>
+    </form>
+
+    <br>
+    <br>
+    <span th:text="#{Language}"></span>   <a href="user?lang=en">English</a> | <a href="user?lang=vi">Vietnamese</a>
+    <table class="table">
+        <thead>
+        <th colspan="7">
+            <h1 style="text-align: center" th:text="#{ManagerStudent}"></h1>
+        </th>
+        <tr>
+            <th th:text="#{Name}"></th>
+            <th th:text="#{Birthday}"></th>
+            <th th:text="#{Phone}"></th>
+            <th th:text="#{Email}"></th>
+            <th th:text="#{CLassRoom}"></th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="s : ${list}">
+            <td><a th:href="@{/view/{id}(id=${s.id})}"><span th:text="${s.name}"></span></a></td>
+            <td th:text="${s.date}"></td>
+            <td th:text="${s.phone}"></td>
+            <td th:text="${s.email}"></td>
+            <td th:text="${s.classRoom.name}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <div>
+        <a th:if="${list.hasPrevious()}" th:href="@{'/home' (page = ${list.number -1})}">Previous</a>
+        <span th:text="${list.number + 1}"></span>/<span th:text="${list.totalPages}"></span>
+        <a th:if="${list.hasNext()}" th:href="@{'/home' (page = ${list.number + 1})}">next</a>
+    </div>
+</div>
+</body>
+</html>
+

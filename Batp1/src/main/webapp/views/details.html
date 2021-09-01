@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Delete</title>
+</head>
+<body>
+<div class="container">
+    <h1>Student Detail</h1>
+        <table>
+            <tr>
+                <td th:text="'Employee Code: '+ ${student.name}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Name: '+ ${student.date}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Age: '+ ${student.phone}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Wage: ' +${student.email}"></td>
+            </tr>
+            <tr>
+                <td th:text="'Branch: '+ ${student.classRoom.name}"></td>
+            </tr>
+        </table>
+    <a href="/admin">Back to List</a>
+</div>
+</body>
+</html>
